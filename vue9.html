@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>过度和动画1</title>
+    <style>
+        /*显示/隐藏的过滤效果*/
+        .xxx-enter-active, .xxx-leave-active{
+            transition: opacity 1s;
+        }
+        /*隐藏时的样式*/
+        .xxx-enter, .xxx-leave-to{
+            opacity: 0;
+        }
+
+        /*显示时的过滤效果*/
+        .move-enter-active {
+            transition: all 1s;
+        }
+        /*隐藏时的过滤效果*/
+        .move-leave-active{
+            transition: all 3s;
+        }
+        /*隐藏时的样式*/
+        .move-enter, .move-leave-to{
+            opacity: 0;
+            transform: translateX(20px);
+        }
+    </style>
+</head>
+<body>
+<!--
+vue动画的理解
+1.操作css的trasition或animation
+2.vue会给目标元素添加/移除特定的class
+3.过渡的相关类名
+    xxx-enter-active:指定显示的transition
+    xxx-leave-active:指定隐藏的transition
+    xxx-enter/xxx-leave-to:指定隐藏时的样式
+-->
+
+    <div id="demo">
+        <button @click="isShow=!isShow">toggle</button>
+        <transition name="xxx">
+            <p v-show="isShow">hello</p>
+        </transition>
+    </div>
+
+
+    <div id="demo1">
+        <button @click="isShow=!isShow">toggle</button>
+        <transition name="move">
+            <p v-show="isShow">hello</p>
+        </transition>
+    </div>
+
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+    new Vue({
+        el:'#demo',
+        data:{
+            isShow: true
+        }
+    })
+
+    new Vue({
+        el:'#demo1',
+        data:{
+            isShow: true
+        }
+    })
+</script>
+
+</body>
+</html>

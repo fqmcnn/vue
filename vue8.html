@@ -9,6 +9,22 @@
 初始化显示
 更新显示
 死亡
+
+1.vue对象的生命周期
+    1.1初始化显示
+        beforeCreate()
+        created()
+        beforeMount()
+        mounted()
+    1.2更新显示
+        beforeUpdate()
+        updated()
+    1.3销毁vue实例：vm.$destroy
+        beforeDestroy()
+        destroyed()
+2.常用的生命周期方法
+    createed()/mounted()：发送ajax请求，启动定时器等异步任务
+    beforeDestroy():做收尾工作，如：清除定时器
 -->
 
 
@@ -24,14 +40,38 @@
         data:{
             isShow: true
         },
+        // 1.初始阶段
+        beforeCreate(){
+            console.log('beforeCreate()')
+        },
+        created(){
+            console.log('created()')
+        },
+        beforeMount(){
+            console.log('beforeMount()')
+        },
         mounted(){ // 初始化显示之后立即调用（1次）
+            console.log('mounted()')
             this.interVal = setInterval(() => {
                 this.isShow = !this.isShow
             }, 1000)
         },
+        // 2.更新阶段
+        beforeUpdate(){
+            console.log('beforeUpdate()')
+        },
+        updateed(){
+            console.log('updateed()')
+        },
+
+        // 3.死亡阶段
         beforeDestroy(){ // 死亡之前调用（1次）
+            console.log('beforeDestroy()')
             // 清除定时器
             clearInterval(this.interVal)
+        },
+        destroyed(){
+            console.log('destroyed()')
         },
         methods:{
             destroyVm(){

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>过度和动画2</title>
+    <style>
+        .bounce-enter-active{
+            animation: bounce-in .5s;
+        }
+        .bounce-leave-active{
+            animation: bounce-in .5s reverse;
+        }
+        @keyframes bounce-in {
+            0%{
+                transform: scale(0);
+            }
+            50%{
+                transform: scale(1.5);
+            }
+            100%{
+                transform: scale(1);
+            }
+    </style>
+</head>
+<body>
+<!--
+基本过渡动画的编码
+1.在目标元素外包裹<transition name='xxx'>
+2.定义class样式
+    指定过渡样式：transition
+    指定隐藏时的样式：opacity/其他
+-->
+
+    <div id="demo">
+        <button @click="show = !show">Toggle show</button><br>
+        <transition name="bounce">
+            <p v-if="show" style="display: inline-block">Lorem ipsum dolor sit amet,consectetur adipdscing</p>
+        </transition>
+    </div>
+
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script type="text/javascript">
+    new Vue({
+        el:'#demo',
+        data:{
+            show: true
+        }
+    })
+</script>
+</body>
+</html>
